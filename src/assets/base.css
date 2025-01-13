@@ -1,0 +1,70 @@
+@import './fonts/fonts.css';
+/* color palette */
+:root {
+  --black: #0F172A;
+  --grey-1: #707786;
+  --grey-2: #DDDFE4;
+  --grey-3: #F5F6F6;
+  --white: #FFFFFF;
+  --red: #900B09;
+  --green: #1C7D41;
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--white);
+  --color-text: var(--black);
+
+  --color-border: var(--grey-3);
+  --color-placeholder: var(--grey-1);
+
+
+  --color-success: var(--green);
+  --color-danger: var(--red);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--black);
+    --color-text: var(--white);
+  
+    --color-border: var(--grey-1);
+    --color-placeholder: var(--grey-3);
+
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: regular;
+  src: local('Inter'), url('./Inter/Inter_24pt-Regular.ttf');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  src: local('Inter'), url('./Inter/Inter_24pt-SemiBold.ttf');
+}
+
+
