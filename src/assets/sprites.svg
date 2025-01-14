@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+
+        <symbol id="check" viewBox="0 0 16 16">
+       <path d="M1.5 7.5L5 11L13 2" stroke="currentColor"  fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+
+        </symbol>
+    </defs>
+</svg>
+    

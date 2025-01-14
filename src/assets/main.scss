@@ -49,7 +49,7 @@ p {
   color: var(--color-paragraph);
 }
 
-label.checkbox-label,
+.checkbox__label,
 .note {
   font-family: Inter;
   font-size: 14px;
@@ -103,7 +103,7 @@ label.checkbox-label,
     text-decoration-skip-ink: none;
   }
 
-  label.checkbox-label,
+  .checkbox__label,
   .note {
     font-family: Inter;
     font-size: 10px;
