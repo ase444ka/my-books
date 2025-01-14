@@ -46,6 +46,7 @@ p {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  color: var(--color-paragraph);
 }
 
 label.checkbox-label,
@@ -57,6 +58,7 @@ label.checkbox-label,
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  color: var(--color-paragraph);
 }
 
 @media screen and (max-width: 1024px) {

@@ -16,7 +16,7 @@
   --color-text: var(--black);
 
   --color-border: var(--grey-3);
-  --color-placeholder: var(--grey-1);
+  --color-paragraph: var(--grey-1);
 
 
   --color-success: var(--green);
@@ -29,7 +29,7 @@
     --color-text: var(--white);
   
     --color-border: var(--grey-1);
-    --color-placeholder: var(--grey-3);
+    --color-paragraph: var(--grey-3);
 
   }
 }
@@ -52,18 +52,8 @@ body {
   line-height: 1.6;
   font-family:
     Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
+    Arial,
     sans-serif;
-  font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
