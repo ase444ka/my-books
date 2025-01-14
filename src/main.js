@@ -1,18 +1,19 @@
-import './assets/main.scss'
+import './assets/main.scss';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import {createApp} from 'vue';
+import {createPinia} from 'pinia';
 
-import MyCheckbox from '@/components/ui/MyCheckbox.vue'
+import MyCheckbox from '@/components/ui/MyCheckbox.vue';
+import MyInput from '@/components/ui/MyInput.vue';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.component('MyCheckbox', MyCheckbox)
+app.component('MyCheckbox', MyCheckbox).component('MyInput', MyInput);
 
-app.use(createPinia())
-app.use(router)
+app.use(createPinia());
+app.use(router);
 
-app.mount('#app')
+app.mount('#app');
