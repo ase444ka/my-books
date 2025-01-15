@@ -1,17 +1,21 @@
 <script setup>
 import {RouterLink, RouterView} from 'vue-router';
-import {ref} from 'vue';
-
+import {ref, onMounted} from 'vue';
+import {inject} from 'vue';
+const successNoty = inject('successNoty');
+const errorNoty = inject('errorNoty');
+onMounted(() => {
+  successNoty('Приветик!')
+  setTimeout(() => {
+    errorNoty('вот беда :()')
+  }, 7000);
+})
 const ch = ref('');
 </script>
 
 <template>
   <header>
-    <MyInput v-model="ch" placeholder="placeholder" error-message="Описание ошибки"
-      >Label</MyInput
-    >
-    <br />
-    {{ ch }}
+
   </header>
 </template>
 
