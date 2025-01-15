@@ -14,7 +14,7 @@ const {type, isSuccess} = defineProps({
 
 const showToast = ref(false);
 
-const hideToast = () => showToast.value = false
+const hideToast = () => (showToast.value = false);
 
 onMounted(() => {
   showToast.value = true;
@@ -47,14 +47,19 @@ const stateClass = computed(() =>
 <style lang="scss" scoped>
 .toast {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 500px;
+  right: 500px;
   padding: 11px 11px 11px 16px;
   gap: 14px;
   border-radius: 8px;
   display: grid;
   grid-template-columns: auto fit-content(300px) auto;
   color: var(--color-background);
+  @media screen and (max-width: 1024px) {
+    padding: 10px 8px 4px 12px;
+    gap: 5px;
+    grid-template-columns: auto fit-content(250px) auto;
+  }
   &_state {
     &_success {
       background-color: var(--color-success);
@@ -68,6 +73,9 @@ const stateClass = computed(() =>
     height: 20px;
     transform: scale(1.2);
     transform-origin: top left;
+    @media screen and (max-width: 1024px) {
+      transform: scale(1);
+    }
   }
   &__button {
     background-color: inherit;
@@ -78,6 +86,9 @@ const stateClass = computed(() =>
     svg {
       width: 20px;
       height: 20px;
+    }
+    @media screen and (max-width: 1024px) {
+      margin-left: -3px;
     }
   }
 }

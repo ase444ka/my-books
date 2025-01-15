@@ -38,7 +38,7 @@ label {
   text-decoration-skip-ink: none;
 }
 
-p, input {
+p, input, button, .toast {
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
@@ -93,7 +93,7 @@ p, input {
     text-decoration-skip-ink: none;
   }
 
-  p, input {
+  p, input, button, .toast {
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
