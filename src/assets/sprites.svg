@@ -2,7 +2,8 @@
     <defs>
 
         <symbol id="check" viewBox="0 0 16 16">
-<path d="M1 5.5L3.25 7L7 1" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 5.5L3.25 7L7 1" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
 
 
 
@@ -12,10 +13,10 @@
             <path
                 d="M3.33337 18.8333H15C15.4421 18.8333 15.866 18.6577 16.1786 18.3451C16.4911 18.0326 16.6667 17.6087 16.6667 17.1666V6.74996L12.0834 2.16663H5.00004C4.55801 2.16663 4.13409 2.34222 3.82153 2.65478C3.50897 2.96734 3.33337 3.39127 3.33337 3.83329V7.16663"
                 stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M11.6666 2.16663V7.16663H16.6666" stroke="currentColor"  fill="none" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            <path d="M2.5 13L4.16667 14.6667L7.5 11.3334" stroke="currentColor"  fill="none" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
+            <path d="M11.6666 2.16663V7.16663H16.6666" stroke="currentColor" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2.5 13L4.16667 14.6667L7.5 11.3334" stroke="currentColor" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
         </symbol>
 
         <symbol id="error">
@@ -32,10 +33,21 @@
         </symbol>
 
         <symbol id="cross">
-                <path d="M15 5.5L5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M5 5.5L15 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
+            <path d="M15 5.5L5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M5 5.5L15 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+
+        <symbol id="trash">
+            <path d="M3 6H21" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19 6V20C19 21 18 22 17 22H7C6 22 5 21 5 20V6" stroke="currentColor" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 6V4C8 3 9 2 10 2H14C15 2 16 3 16 4V6" stroke="currentColor" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10 11V17" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 11V17" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
         </symbol>
 
 

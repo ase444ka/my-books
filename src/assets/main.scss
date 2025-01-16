@@ -38,7 +38,11 @@ label {
   text-decoration-skip-ink: none;
 }
 
-p, input, button, .toast {
+p {
+  color: var(--color-paragraph);
+}
+
+p, input, button *, .toast {
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
@@ -46,7 +50,6 @@ p, input, button, .toast {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  color: var(--color-paragraph);
 }
 
 .checkbox__label,
@@ -93,7 +96,7 @@ p, input, button, .toast {
     text-decoration-skip-ink: none;
   }
 
-  p, input, button, .toast {
+  p, input, button *, .toast {
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
