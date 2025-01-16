@@ -18,7 +18,7 @@ const hideToast = () => (showToast.value = false);
 
 onMounted(() => {
   showToast.value = true;
-  setTimeout(() => hideToast(), 4500)
+  setTimeout(() => hideToast(), 4500);
 });
 
 const stateClass = computed(() =>
@@ -56,6 +56,11 @@ const stateClass = computed(() =>
   grid-template-columns: auto fit-content(300px) auto;
   color: var(--color-background);
   cursor: default;
+  &:hover {
+    .toast__button {
+      opacity: 1;
+    }
+  }
   @media screen and (max-width: 1024px) {
     padding: 10px 8px 4px 12px;
     gap: 5px;
@@ -64,11 +69,14 @@ const stateClass = computed(() =>
   &_state {
     &_success {
       background-color: var(--color-success);
+      &:hover {
+        background-color: var(--color-success-active);
+      }
     }
     &_error {
       background-color: var(--color-danger);
       &:hover {
-        background-color: #820a08;
+        background-color: var(--color-danger-active);
       }
     }
   }
@@ -87,6 +95,7 @@ const stateClass = computed(() =>
     outline: none;
     color: var(--color-background);
     cursor: pointer;
+    opacity: 0.5;
     svg {
       width: 20px;
       height: 20px;

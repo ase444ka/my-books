@@ -7,7 +7,9 @@
   --grey-3: #F5F6F6;
   --white: #FFFFFF;
   --red: #900B09;
+  --red-1: #820a08;
   --green: #1C7D41;
+  --green-1: #19713b;
 }
 
 /* semantic color variables for this project */
@@ -20,7 +22,9 @@
 
 
   --color-success: var(--green);
+  --color-success-active: var(--green-1);
   --color-danger: var(--red);
+  --color-danger-active: var(--red-1);
 }
 
 @media (prefers-color-scheme: dark) {
