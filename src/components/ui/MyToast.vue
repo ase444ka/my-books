@@ -47,14 +47,15 @@ const stateClass = computed(() =>
 <style lang="scss" scoped>
 .toast {
   position: fixed;
-  bottom: 500px;
-  right: 500px;
+  bottom: 20px;
+  right: 20px;
   padding: 11px 11px 11px 16px;
   gap: 14px;
   border-radius: 8px;
   display: grid;
   grid-template-columns: auto fit-content(300px) auto;
   color: var(--color-background);
+  cursor: default;
   @media screen and (max-width: 1024px) {
     padding: 10px 8px 4px 12px;
     gap: 5px;
@@ -66,6 +67,9 @@ const stateClass = computed(() =>
     }
     &_error {
       background-color: var(--color-danger);
+      &:hover {
+        background-color: #820a08;
+      }
     }
   }
   &__icon {
