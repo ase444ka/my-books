@@ -86,3 +86,21 @@ button *,
     line-height: 10px;
   }
 }
+
+
+
+.container {
+  max-width: 1124px;
+  padding: 40px;
+  margin: auto;
+  @media screen and (max-width: 768px) {
+    padding: 75px;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 30px;
+  }
+  @media screen and (max-width: 320px) {
+    padding: 20px;
+  }
+}
+
