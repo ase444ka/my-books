@@ -15,6 +15,10 @@ h1 {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  @media screen and (max-width: 1024px) {
+    font-size: 20px;
+    line-height: 20px;
+  }
 }
 
 h2 {
@@ -25,6 +29,10 @@ h2 {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
 }
 
 p.bold,
@@ -36,13 +44,20 @@ label {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  @media screen and (max-width: 1024px) {
+    font-size: 14px;
+    line-height: 21px;
+  }
 }
 
 p {
   color: var(--color-paragraph);
 }
 
-p, input, button *, .toast {
+p,
+input,
+button *,
+.toast {
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
@@ -50,6 +65,10 @@ p, input, button *, .toast {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  @media screen and (max-width: 1024px) {
+    font-size: 14px;
+    line-height: 21px;
+  }
 }
 
 .checkbox__label,
@@ -62,58 +81,8 @@ p, input, button *, .toast {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color-paragraph);
-}
-
-@media screen and (max-width: 1024px) {
-  h1 {
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 20px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-
-  h2 {
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-
-  p.bold,
-  label {
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 21px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-
-  p, input, button *, .toast {
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-
-  .checkbox__label,
-  .note {
-    font-family: Inter;
+  @media screen and (max-width: 1024px) {
     font-size: 10px;
-    font-weight: 400;
     line-height: 10px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
   }
 }
