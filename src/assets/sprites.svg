@@ -22,7 +22,7 @@
         <symbol id="error">
             <path
                 d="M3.33337 18.8333H15C15.4421 18.8333 15.866 18.6577 16.1786 18.3451C16.4911 18.0326 16.6667 17.6087 16.6667 17.1666V6.74996L12.0834 2.16663H5.00004C4.55801 2.16663 4.13409 2.34222 3.82153 2.65478C3.50897 2.96734 3.33337 3.39127 3.33337 3.83329V7.16663"
-                 stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M11.6666 2.16663V7.16663H16.6666" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
             <path d="M2.5 10.9166L6.66667 15.0833" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -82,18 +82,29 @@
         </symbol>
 
         <symbol id="add">
-                <g>
-                    <path
-                        d="M3.33331 18.8333H15C15.442 18.8333 15.8659 18.6577 16.1785 18.3452C16.4911 18.0326 16.6666 17.6087 16.6666 17.1667V6.75001L12.0833 2.16667H4.99998C4.55795 2.16667 4.13403 2.34227 3.82147 2.65483C3.50891 2.96739 3.33331 3.39131 3.33331 3.83334V7.16667"
-                        stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M11.6667 2.16667V7.16667H16.6667" stroke="currentColor" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.5 13H7.5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M5 10.5V15.5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </g>
+            <g>
+                <path
+                    d="M3.33331 18.8333H15C15.442 18.8333 15.8659 18.6577 16.1785 18.3452C16.4911 18.0326 16.6666 17.6087 16.6666 17.1667V6.75001L12.0833 2.16667H4.99998C4.55795 2.16667 4.13403 2.34227 3.82147 2.65483C3.50891 2.96739 3.33331 3.39131 3.33331 3.83334V7.16667"
+                    stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M11.6667 2.16667V7.16667H16.6667" stroke="currentColor" fill="none" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.5 13H7.5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M5 10.5V15.5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </g>
+
+        </symbol>
+
+        <symbol id="edit">
+            <path
+                d="M3.33337 11.25V3.33332C3.33337 2.8913 3.50897 2.46737 3.82153 2.15481C4.13409 1.84225 4.55801 1.66666 5.00004 1.66666H12.0834L16.6667 6.24999V16.6667C16.6667 17.1087 16.4911 17.5326 16.1786 17.8452C15.866 18.1577 15.4421 18.3333 15 18.3333H10.4167"
+                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.6666 1.66666V6.66666H16.6666" stroke="currentColor" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M8.68337 10.5083C8.84589 10.3458 9.03881 10.2169 9.25114 10.129C9.46348 10.041 9.69105 9.99576 9.92087 9.99576C10.1507 9.99576 10.3783 10.041 10.5906 10.129C10.8029 10.2169 10.9959 10.3458 11.1584 10.5083C11.3209 10.6709 11.4498 10.8638 11.5377 11.0761C11.6257 11.2884 11.671 11.516 11.671 11.7458C11.671 11.9757 11.6257 12.2032 11.5377 12.4156C11.4498 12.6279 11.3209 12.8208 11.1584 12.9833L6.62504 17.5L3.33337 18.3333L4.15837 15.0417L8.68337 10.5083Z"
+                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 
         </symbol>
 
