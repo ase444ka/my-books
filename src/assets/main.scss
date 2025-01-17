@@ -86,16 +86,16 @@ button *,
 
 .container {
   max-width: 1124px;
-  padding: 40px;
+  padding: 0 40px;
   margin: auto;
   @media screen and (max-width: 768px) {
-    padding: 75px;
+    padding: 0 75px;
   }
   @media screen and (max-width: 480px) {
-    padding: 30px;
+    padding: 0 30px;
   }
   @media screen and (max-width: 320px) {
-    padding: 20px;
+    padding: 0 20px;
   }
 }
 

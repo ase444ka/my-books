@@ -32,6 +32,7 @@ const buttonClass = computed(() => (text ? '' : 'button_type_icon'));
   color: var(--color-background);
   display: flex;
   align-items: center;
+  justify-content: center;
   @media screen and (max-width: 1024px) {
     padding: 8px 12px;
     gap: 0px;
@@ -63,9 +64,7 @@ const buttonClass = computed(() => (text ? '' : 'button_type_icon'));
       opacity: 1;
     }
     &:hover {
-      .button__icon {
         color: var(--color-danger);
-      }
     }
   }
 }
