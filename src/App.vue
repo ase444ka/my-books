@@ -89,6 +89,10 @@ const ch = ref('');
     padding-bottom: 16px;
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 480px) {
+      padding-top: 11px;
+      padding-bottom: 13px;
+    }
   }
   &__title {
     padding-top: 11px;
