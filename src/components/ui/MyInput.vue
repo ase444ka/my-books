@@ -47,7 +47,6 @@ const stateClass = computed(() => {
 .input {
   display: flex;
   flex-direction: column;
-  width: 496px;
   gap: 7px;
   @media screen and (max-width: 1024px) {
     gap: 4px;
@@ -85,6 +84,7 @@ const stateClass = computed(() => {
     input:focus,
     input:focus-visible {
       height: 100%;
+      width: 100%;
       border: none;
       outline: none;
       background-color: inherit;
