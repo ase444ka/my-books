@@ -4,6 +4,7 @@ import {ref, onMounted} from 'vue';
 import {inject} from 'vue';
 const successNoty = inject('successNoty');
 const errorNoty = inject('errorNoty');
+import BookDialog from '@/components/BookDialog.vue'
 
 onMounted(() => {
   successNoty('Приветик!');
@@ -15,6 +16,7 @@ const ch = ref('');
 </script>
 
 <template>
+  <BookDialog />
   <header class="header">
     <div class="container">
       <div class="header__top">
