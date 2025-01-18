@@ -1,11 +1,20 @@
-<script></script>
+<script setup>
+const emit = defineEmits(['cancel', 'save', 'delete'])
+
+const process = (e) => {
+  if(e.target.matches('.modal__backdrop')) {
+    emit('cancel')
+  }
+}
+
+</script>
 
 <template>
-  <div class="modal__backdrop">
+  <div class="modal__backdrop" @click="process">
     <div class="modal__window">
       <div class="modal__title">
         <h1>Добавить книгу</h1>
-        <MyButton class="modal__close">
+        <MyButton class="modal__close" @click="$emit('cancel')">
           <use href="../assets/sprites.svg#cross"></use>
         </MyButton>
       </div>
@@ -29,6 +38,7 @@
 </template>
 
 <style lang="scss" scoped>
+
 .modal {
   &__backdrop {
     position: fixed;

@@ -6,6 +6,17 @@ const successNoty = inject('successNoty');
 const errorNoty = inject('errorNoty');
 import BookDialog from '@/components/BookDialog.vue'
 
+const showModal = ref(false)
+
+const closeModal = () => {
+  showModal.value = false
+}
+
+const openModal = () => {
+  showModal.value = true
+}
+
+
 onMounted(() => {
   successNoty('Приветик!');
   setTimeout(() => {
@@ -16,7 +27,10 @@ const ch = ref('');
 </script>
 
 <template>
-  <BookDialog />
+  <Transition>
+  <BookDialog @cancel="closeModal"  v-if="showModal"/>
+
+  </Transition>
   <header class="header">
     <div class="container">
       <div class="header__top">
@@ -30,6 +44,8 @@ const ch = ref('');
             </svg>
           </template>
         </MyInput>
+
+
         <!-- <MyButton class="header__search-button">
           <use href="./assets/sprites.svg#magnify"></use>
         </MyButton> -->
@@ -93,11 +109,23 @@ const ch = ref('');
           </li>
         </ul>
       </div>
+  <MyButton text="показать модалку" @click="openModal"/>
+
     </section>
   </main>
 </template>
 
 <style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease, transform 0.4s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: scale(0,1);
+}
 .header {
   background-color: var(--color-border);
   padding-top: 13px;
