@@ -66,10 +66,21 @@ const {label} = defineProps({
   }
   &__icon {
     color: var(--color-background);
-    width: 17px;
-    height: 13px;
-    margin-top: 3px;
     visibility: hidden;
+    width: 17px;
+    height: 9px;
+    transform: scale(1.6);
+    margin-left: 4px;
+    @media screen and (max-width: 1024px) {
+      width: 17px;
+      height: 9px;
+      transform: scale(1);
+      margin-left: 1px;
+    }
+  }
+
+  &__label {
+    user-select: none;
   }
 
   &__input:checked + &__state &__control {
