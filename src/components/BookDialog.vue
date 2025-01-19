@@ -1,10 +1,28 @@
 <script setup>
+import {ref, onMounted} from 'vue'
+import bookKeeper from '@/api/book-keeper.js'
+const {book} = defineProps({
+  book: Object || null,
+})
 const emit = defineEmits(['cancel', 'save', 'delete'])
+
+let currentBook = ref(book || {
+    title: '',
+    author: '',
+    year: null,
+    genre: '',
+  })
+
+
 
 const process = (e) => {
   if(e.target.matches('.modal__backdrop')) {
     emit('cancel')
   }
+}
+
+const saveBook = e => {
+  bookKeeper.createItem(currentBook.value)
 }
 
 </script>
@@ -19,11 +37,11 @@ const process = (e) => {
         </MyButton>
       </div>
       <p class="modal__tooltip">Заполните все поля и добавьте книгу в список</p>
-      <form action="" class="modal__form">
-        <MyInput label="Название" placeholder="Название произведения" />
-        <MyInput label="Автор" placeholder="Имя и фамилия автора" />
-        <MyInput label="Год" placeholder="Год выпуска" />
-        <MyInput label="Жанр" placeholder="Добавьте жанр произведения" />
+      <form @submit.prevent="saveBook" class="modal__form">
+        <MyInput label="Название" placeholder="Название произведения" v-model="currentBook.title" />
+        <MyInput label="Автор" placeholder="Имя и фамилия автора" v-model="currentBook.author" />
+        <MyInput label="Год" placeholder="Год выпуска" v-model="currentBook.year" />
+        <MyInput label="Жанр" placeholder="Добавьте жанр произведения" v-model="currentBook.genre" />
         <MyCheckbox>
           Я согласен с условиями <a href="#">политики конфиденциальности</a>
         </MyCheckbox>
