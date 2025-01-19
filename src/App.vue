@@ -1,5 +1,4 @@
 <script setup>
-import {RouterLink, RouterView} from 'vue-router';
 import {ref, onMounted} from 'vue';
 import {inject} from 'vue';
 const successNoty = inject('successNoty');
