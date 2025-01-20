@@ -30,12 +30,12 @@ export default {
   },
 
   updateItem(item) {
-    const filteredList = this.getList().filter(list.id !== item.id);
+    const filteredList = this.getList().filter(it => it.id !== item.id);
     localStorage.setItem('booklist', JSON.stringify([...filteredList, item]));
   },
 
   deleteItem(id) {
-    const filteredList = this.getList().filter(list.id !== id);
+    const filteredList = this.getList().filter(item => item.id !== id);
     localStorage.setItem('booklist', JSON.stringify(filteredList));
   },
 };

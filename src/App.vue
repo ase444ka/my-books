@@ -1,34 +1,72 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref} from 'vue';
 import {inject} from 'vue';
 const successNoty = inject('successNoty');
 const errorNoty = inject('errorNoty');
-import BookDialog from '@/components/BookDialog.vue'
+import BookDialog from '@/components/BookDialog.vue';
+import bookKeeper from '@/api/book-keeper.js';
 
-const showModal = ref(false)
+const bookList = ref(bookKeeper.getList());
+const currentBook = ref(null);
 
-const closeModal = () => {
-  showModal.value = false
-}
+const showModal = ref(false);
 
-const openModal = () => {
-  showModal.value = true
-}
+const openToAdd = () => {
+  showModal.value = true;
+};
 
+const openToEdit = (book) => {
+  currentBook.value = book;
+  showModal.value = true;
+};
 
-onMounted(() => {
-  successNoty('Приветик!');
-  setTimeout(() => {
-    errorNoty('вот беда :()');
-  }, 7000);
-});
-const ch = ref('');
+const refresh = () => {
+  console.log('refrecccc')
+  showModal.value = false;
+  currentBook.value = null;
+};
+
+const refreshAndUpdate = () => {
+  refresh();
+  bookList.value = bookKeeper.getList();
+};
+
+const saveBook = (book) => {
+  console.log('save')
+  if (currentBook.value) {
+    edit(book);
+  } else {
+    add(book);
+  }
+  refreshAndUpdate()
+};
+
+const add = (book) => {
+  console.log('add')
+  bookKeeper.createItem(book);
+};
+
+const edit = (book) => {
+  console.log('edit')
+  bookKeeper.updateItem(book);
+};
+
+const remove = (book) => {
+  console.log('rremmoove')
+  bookKeeper.deleteItem(book.id);
+  refreshAndUpdate();
+};
 </script>
 
 <template>
   <Transition>
-  <BookDialog @cancel="closeModal"  v-if="showModal"/>
-
+    <BookDialog
+      @cancel="refresh"
+      @save="saveBook"
+      @delete="remove"
+      v-if="showModal"
+      :book="currentBook"
+    />
   </Transition>
   <header class="header">
     <div class="container">
@@ -43,7 +81,6 @@ const ch = ref('');
             </svg>
           </template>
         </MyInput>
-
 
         <!-- <MyButton class="header__search-button">
           <use href="./assets/sprites.svg#magnify"></use>
@@ -62,7 +99,11 @@ const ch = ref('');
       </div>
       <div class="header__bottom">
         <h1 class="header__title">Книги в каталоге <span>3</span></h1>
-        <MyButton class="header__button" text="Добавить книгу">
+        <MyButton
+          class="header__button"
+          text="Добавить книгу"
+          @click="openToAdd"
+        >
           <use href="./assets/sprites.svg#add"></use>
         </MyButton>
       </div>
@@ -72,44 +113,24 @@ const ch = ref('');
     <section class="book-list">
       <div class="container">
         <ul>
-          <li class="book">
+          <li class="book" v-for="book in bookList">
             <div class="book__main">
               <h2 class="book__title">
-                Как разговаривать с кем угодно, когда угодно, где угодно
+                {{ book.title }}
               </h2>
-              <MyButton class="book__edit-button">
+              <MyButton class="book__edit-button" @click="openToEdit(book)">
                 <use href="./assets/sprites.svg#edit"></use>
               </MyButton>
             </div>
 
             <p class="book__info">
-              <span>Ларри кинг</span>
-              <span>2009</span>
-              <span>детектив</span>
-            </p>
-          </li>
-
-          <li class="book">
-            <div class="book__main">
-              <h2 class="book__title">
-                Больше, чем просто красивая. 12 тайных сил женщины, перед
-                которой невозможно устоять
-              </h2>
-              <MyButton class="book__edit-button">
-                <use href="./assets/sprites.svg#edit"></use>
-              </MyButton>
-            </div>
-
-            <p class="book__info">
-              <span>Ларри кинг</span>
-              <span>2009</span>
-              <span>детектив</span>
+              <span>{{ book.author }}</span>
+              <span>{{ book.year }}</span>
+              <span>{{ book.genre }}</span>
             </p>
           </li>
         </ul>
       </div>
-  <MyButton text="показать модалку" @click="openModal"/>
-
     </section>
   </main>
 </template>
@@ -123,7 +144,7 @@ const ch = ref('');
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform: scale(0,1);
+  transform: scale(0, 1);
 }
 .header {
   background-color: var(--color-border);
@@ -226,36 +247,34 @@ const ch = ref('');
     background-color: var(--color-border);
     padding: 12px 14px 17px 16px;
     @media screen and (max-width: 480px) {
-    padding: 12px 14px 15px 15px;
-  }
-
+      padding: 12px 14px 15px 15px;
+    }
   }
   &__main {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
   }
- &__title {
-  padding-top: 4px;
-  padding-bottom: 9px;
- } 
- &__edit-button {
-  padding: 0;
-  padding-top: 5px;
-  background-color: inherit;
-  &:hover {
-    color: var(--color-text);
+  &__title {
+    padding-top: 4px;
+    padding-bottom: 9px;
   }
- }
- &__info {
-  padding-top: 0;
-  display: flex;
-  gap: 18px;
-  cursor: default;
-  @media screen and (max-width: 480px) {
-    gap: 9px;
+  &__edit-button {
+    padding: 0;
+    padding-top: 5px;
+    background-color: inherit;
+    &:hover {
+      color: var(--color-text);
+    }
   }
- }
-  
+  &__info {
+    padding-top: 0;
+    display: flex;
+    gap: 18px;
+    cursor: default;
+    @media screen and (max-width: 480px) {
+      gap: 9px;
+    }
+  }
 }
 </style>
