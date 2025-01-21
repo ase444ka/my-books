@@ -208,7 +208,8 @@ const filteredBookList = computed(() => {
   <main>
     <section class="book-list">
       <div class="container">
-        <ul>
+        <p v-if="!filteredBookList.length">По вашему запросу ничего не найдено</p>
+        <ul v-else>
           <li class="book" v-for="book in filteredBookList">
             <div class="book__main">
               <h2 class="book__title">
@@ -226,6 +227,7 @@ const filteredBookList = computed(() => {
             </p>
           </li>
         </ul>
+        
       </div>
     </section>
   </main>
