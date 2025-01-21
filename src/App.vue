@@ -100,6 +100,8 @@ const filteredBookList = computed(() => {
   list.sort(sortFunctions[sortBy.value]);
   return list;
 });
+
+const clearSearchString = () => searchString.value = ''
 </script>
 
 <template>
@@ -120,12 +122,17 @@ const filteredBookList = computed(() => {
         </svg>
         <MyInput
           class="header__search"
-          placeholder="Поиск"
+          placeholder="Найти ту самую книгу"
           v-model="searchString"
         >
           <template #prepend-icon>
             <svg>
               <use href="./assets/sprites.svg#magnify"></use>
+            </svg>
+          </template>
+          <template #append-icon>
+            <svg v-if="searchString" @click="clearSearchString">
+              <use href="./assets/sprites.svg#cross"></use>
             </svg>
           </template>
         </MyInput>
@@ -273,6 +280,12 @@ const filteredBookList = computed(() => {
     flex-grow: 1;
     * {
       background-color: var(--color-background);
+    }
+    svg {
+      margin-right: 10px;
+      &:last-child {
+        cursor: pointer;
+      }
     }
   }
 
