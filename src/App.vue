@@ -41,15 +41,19 @@ const saveBook = (book) => {
 
 const add = (book) => {
   bookKeeper.createItem(book);
+  successNoty('Книга добавлена')
 };
 
 const edit = (book) => {
   bookKeeper.updateItem(book);
+  successNoty('Книга изменена')
 };
 
 const remove = (book) => {
   bookKeeper.deleteItem(book.id);
+  successNoty('Книга удалена')
   refreshAndUpdate();
+
 };
 </script>
 
