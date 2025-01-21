@@ -3,26 +3,31 @@ import {computed} from 'vue';
 
 const model = defineModel();
 
-const {label, errorMessage, placeholder, isSuccess} = defineProps({
+const {label, errorMessage, placeholder, state, isSuccess} = defineProps({
   label: String,
   errorMessage: String,
   placeholder: String,
-  isSuccess: {
-    type: Boolean,
-    default: false,
-  }
+  state: {
+    validator(value) {
+      return ['clean', 'success', 'error'].includes(value);
+    },
+    default: 'clean',
+  },
 });
 
-const stateClass = computed(() => {
-  if (errorMessage) {
-    return 'input__input_state_error'
-  }
-  if (isSuccess) {
-    return 'input__input_state_success'
-  } 
-  return ''
-})
+const emit = defineEmits(['blur', 'focus']);
 
+const stateClass = computed(() => {
+  if (state === 'error') {
+    return 'input__input_state_error';
+  }
+  if (state === 'success') {
+    return 'input__input_state_success';
+  }
+  return '';
+});
+
+const showError = computed(() => !!errorMessage && state === 'error')
 </script>
 
 <template>
@@ -35,11 +40,11 @@ const stateClass = computed(() => {
     <div class="input__input" :class="stateClass">
       <slot name="prepend-icon"></slot>
 
-      <input type="text" v-model="model" :placeholder="placeholder" />
+      <input type="text" v-model="model" :placeholder="placeholder" @focus="$emit('focus')" @blur="$emit('blur')" />
       <slot name="append-icon"></slot>
     </div>
 
-    <div class="input__error note" v-if="errorMessage">{{ errorMessage }}</div>
+    <div class="input__error note"><span v-if="showError">{{ errorMessage }}</span></div>
   </label>
 </template>
 
@@ -99,6 +104,7 @@ const stateClass = computed(() => {
   &__error {
     color: var(--color-danger);
     padding-left: 17px;
+    height: 10px;
     @media screen and (max-width: 1024px) {
       margin-top: -3px;
     }

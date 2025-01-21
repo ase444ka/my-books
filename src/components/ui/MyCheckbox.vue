@@ -1,15 +1,19 @@
 <script setup>
+import {computed} from 'vue'
 const model = defineModel();
-const {label} = defineProps({
+const {label, isError} = defineProps({
   label: String,
+  isError: Boolean,
 });
+
+const stateClass = computed(() => isError ? 'checkbox__control_state_error' : '')
 </script>
 
 <template>
   <label class="checkbox">
-    <input type="checkbox" class="checkbox__input" />
+    <input type="checkbox" class="checkbox__input" v-model="model"  v-bind="$attrs" />
     <div class="checkbox__state">
-      <div class="checkbox__control">
+      <div class="checkbox__control" :class="stateClass">
         <svg class="checkbox__icon">
           <use href="../../assets/sprites.svg#check"></use>
         </svg>
@@ -59,6 +63,9 @@ const {label} = defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
+    &_state_error {
+      border: 2px solid var(--color-danger);
+    }
     @media screen and (max-width: 1024px) {
       width: 14px;
       height: 14px;

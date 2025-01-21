@@ -1,13 +1,15 @@
 <script setup>
-import {ref, computed} from 'vue';
-import bookKeeper from '@/api/book-keeper.js';
+import {ref, computed, onMounted, onBeforeUnmount} from 'vue';
+
+
 const {book} = defineProps({
-  book: Object || null,
+  book: [Object, null],
 });
 const emit = defineEmits(['cancel', 'save', 'delete']);
+import {required, isYear, isText} from '@/api/validatiions.js';
 
 const currentBook = ref(
-  book || {
+  book ? {...book} : {
     title: '',
     author: '',
     year: null,
@@ -15,14 +17,71 @@ const currentBook = ref(
   }
 );
 
+const attemptedToSubmit = ref(false)
+
+const keyupHandler = e => {
+  if (e.key === 'Enter') {
+    setAllDirty()
+  }
+  if (e.key === 'Escape') {
+    emit('cancel')
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keyup', keyupHandler)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keyup', keyupHandler)
+})
+
+const isAgree = ref(false);
+
+const validations = {
+  title: {
+    validate: required,
+    errorMessage: 'обязательное поле',
+  },
+  author: {
+    validate: required,
+    errorMessage: 'обязательное поле',
+  },
+  year: {
+    validate: isYear,
+    errorMessage: 'укажите год',
+  },
+  genre: {
+    validate: isText,
+    errorMessage: 'разрешены только буквы, пробелы и дефисы',
+  },
+};
+
+const cleans = ref(Object.fromEntries(Object.keys(currentBook.value).map((k) => [k, true])));
+
+const setDirty = (field) => (cleans.value[field] = false);
+
+const states = computed(() => {
+  const states = {};
+  Object.keys(validations).forEach((key) => {
+    states[key] = cleans.value[key]
+      ? 'clean'
+      : validations[key].validate(currentBook.value[key])
+      ? 'success'
+      : 'error';
+  });
+  return states;
+});
+
 const isDeleting = ref(false);
 
-const process = (e) => {
-  if (e.target.matches('.modal__backdrop')) {
-    console.log('lllll');
+const processMouse = (e) => {
+  if (e.target?.matches('.modal__backdrop')) {
     emit('cancel');
   }
 };
+
+
 
 const title = computed(() => {
   return book ? 'Редактировать книгу' : 'Добавить книгу';
@@ -35,17 +94,38 @@ const tooltip = computed(() => {
 });
 
 const startDeleting = () => {
-  console.log('deletinggg');
   isDeleting.value = true;
 };
 
 const cancelDeleting = () => {
   isDeleting.value = false;
 };
+
+
+
+const savingDisabled = computed(() => {
+  return !isAgree.value || Object.entries(currentBook.value).filter(e => e[0] !== 'id').some(e =>  !validations[e[0]].validate(e[1]))
+})
+
+
+const setAllDirty = () => {
+  attemptedToSubmit.value = true
+  Object.keys(currentBook.value).forEach((key) => {
+    setDirty(key)
+  })
+}
+
+const trySaving = () => {
+  if (savingDisabled.value) return
+  emit('save', currentBook.value)
+}
+
+
+
 </script>
 
 <template>
-  <div class="modal__backdrop" @click="process">
+  <div class="modal__backdrop" @mousedown="processMouse"  @keyup.enter="setAllDirty"  @keyup.esc="$emit('cancel')" @submit="trySaving">
     <div class="modal__window">
       <div class="modal__title">
         <h1>{{ title }}</h1>
@@ -54,28 +134,45 @@ const cancelDeleting = () => {
         </MyButton>
       </div>
       <p class="modal__tooltip">{{ tooltip }}</p>
-      <form class="modal__form" @submit.prevent="$emit('save', currentBook)">
+      <form class="modal__form" @submit.prevent="trySaving">
         <MyInput
+          :state="states.title"
+          :errorMessage="validations.title.errorMessage"
+          @blur="setDirty('title')"
           label="Название"
           placeholder="Название произведения"
           v-model="currentBook.title"
+          tabindex="1"
         />
         <MyInput
+          :state="states.author"
+          :errorMessage="validations.author.errorMessage"
+          @blur="setDirty('author')"
           label="Автор"
           placeholder="Имя и фамилия автора"
           v-model="currentBook.author"
+          tabindex="2"
         />
         <MyInput
+          :state="states.year"
+          :errorMessage="validations.year.errorMessage"
+          @blur="setDirty('year')"
           label="Год"
           placeholder="Год выпуска"
           v-model="currentBook.year"
+          tabindex="3"
         />
         <MyInput
+          :state="states.genre"
+          :errorMessage="validations.genre.errorMessage"
+          @blur="setDirty('genre')"
           label="Жанр"
           placeholder="Добавьте жанр произведения"
           v-model="currentBook.genre"
+          tabindex="4"
         />
-        <MyCheckbox>
+          
+        <MyCheckbox v-model="isAgree" :isError="!isAgree && attemptedToSubmit" tabindex="5" lol="pop">
           Я согласен с условиями <a href="#">политики конфиденциальности</a>
         </MyCheckbox>
         <Transition>
@@ -96,12 +193,12 @@ const cancelDeleting = () => {
           <MyButton type="button" @click="startDeleting">
             <use href="../assets/sprites.svg#trash"></use>
           </MyButton>
-          <MyButton type="submit" text="Сохранить">
+          <MyButton type="submit" text="Сохранить"    @click="setAllDirty">
             <use href="../assets/sprites.svg#add"></use>
           </MyButton>
         </div>
         <div class="modal__actions" v-else>
-          <MyButton type="submit" text="Добавить">
+          <MyButton type="submit" text="Добавить"  @click="setAllDirty">
             <use href="../assets/sprites.svg#add"></use>
           </MyButton>
         </div>

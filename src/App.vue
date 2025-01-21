@@ -21,7 +21,6 @@ const openToEdit = (book) => {
 };
 
 const refresh = () => {
-  console.log('refrecccc')
   showModal.value = false;
   currentBook.value = null;
 };
@@ -32,7 +31,6 @@ const refreshAndUpdate = () => {
 };
 
 const saveBook = (book) => {
-  console.log('save')
   if (currentBook.value) {
     edit(book);
   } else {
@@ -42,17 +40,14 @@ const saveBook = (book) => {
 };
 
 const add = (book) => {
-  console.log('add')
   bookKeeper.createItem(book);
 };
 
 const edit = (book) => {
-  console.log('edit')
   bookKeeper.updateItem(book);
 };
 
 const remove = (book) => {
-  console.log('rremmoove')
   bookKeeper.deleteItem(book.id);
   refreshAndUpdate();
 };
