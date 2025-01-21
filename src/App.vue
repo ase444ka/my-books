@@ -325,9 +325,9 @@ const clearSearchString = () => searchString.value = ''
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    @media screen and (max-width: 510px) {
-      justify-content: flex-start;
+    gap: 30px;
+    @media screen and (max-width: 768px) {
+      justify-content: space-between;
     }
   }
 
