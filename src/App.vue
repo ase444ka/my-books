@@ -97,7 +97,7 @@ const filteredBookList = computed(() => {
         e[1].toString().toLowerCase().includes(searchString.value.toLowerCase())
       )
   );
-  list.sort(sortFunctions[sortBy.value])
+  list.sort(sortFunctions[sortBy.value]);
   return list;
 });
 </script>
@@ -145,7 +145,7 @@ const filteredBookList = computed(() => {
           </template>
         </MyInput> -->
       </div>
-      <div class="header__bottom">
+      <div class="header__bottom header__bottom_desktop">
         <h1 class="header__title">
           <template v-if="searchString"
             >Книги по запросу {{ searchString }}</template
@@ -172,6 +172,36 @@ const filteredBookList = computed(() => {
         >
           <use href="./assets/sprites.svg#add"></use>
         </MyButton>
+      </div>
+      <div class="header__bottom header__bottom_mobile">
+        <h1 class="header__title">
+          <template v-if="searchString"
+            >Книги по запросу {{ searchString }}</template
+          >
+          <template v-else
+            >Книги в каталоге <span>{{ booksCount }}</span></template
+          >
+        </h1>
+        <div class="header__controls">
+          <NSelect
+            :options="sortParams"
+            default-value="default"
+            v-model:value="sortBy"
+            class="header__select"
+            size="large"
+          >
+            <template #arrow>
+              <ArrowSort28Regular />
+            </template>
+          </NSelect>
+          <MyButton
+            class="header__button"
+            text="Добавить книгу"
+            @click="openToAdd"
+          >
+            <use href="./assets/sprites.svg#add"></use>
+          </MyButton>
+        </div>
       </div>
     </div>
   </header>
@@ -227,10 +257,7 @@ const filteredBookList = computed(() => {
     }
   }
 
-  &__bottom {
-    display: flex;
-    align-items: center;
-  }
+
 
   &__logo {
     flex-basis: 55px;
@@ -250,11 +277,22 @@ const filteredBookList = computed(() => {
   &__bottom {
     padding-top: 13px;
     padding-bottom: 16px;
-    display: flex;
     justify-content: space-between;
     @media screen and (max-width: 480px) {
       padding-top: 11px;
       padding-bottom: 13px;
+    }
+    &_desktop {
+      display: none;
+      @media screen and (min-width: 1025px) {
+        display: flex;
+      }
+    }
+    &_mobile {
+      display: none;
+      @media screen and (max-width: 1024px) {
+        display: block;
+      }
     }
   }
   &__title {
@@ -267,9 +305,24 @@ const filteredBookList = computed(() => {
       padding-left: 4px;
     }
   }
+
+  &__controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    @media screen and (max-width: 510px) {
+      justify-content: flex-start;
+    }
+  }
+
   &__select {
     flex-grow: 0;
-    max-width: 190px;
+    max-width: 200px;
+    @media screen and (max-width: 510px) {
+      flex-grow: 1;
+      max-width: inherit;
+    }
 
     :deep(.n-base-selection-label) {
       height: 49px;
