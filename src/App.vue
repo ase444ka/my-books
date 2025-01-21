@@ -1,6 +1,5 @@
 <script setup>
-import {ref} from 'vue';
-import {inject} from 'vue';
+import {ref, inject, computed} from 'vue';
 const successNoty = inject('successNoty');
 const errorNoty = inject('errorNoty');
 import BookDialog from '@/components/BookDialog.vue';
@@ -10,6 +9,8 @@ const bookList = ref(bookKeeper.getList());
 const currentBook = ref(null);
 
 const showModal = ref(false);
+
+const searchString = ref('');
 
 const openToAdd = () => {
   showModal.value = true;
@@ -36,25 +37,36 @@ const saveBook = (book) => {
   } else {
     add(book);
   }
-  refreshAndUpdate()
+  refreshAndUpdate();
 };
 
 const add = (book) => {
   bookKeeper.createItem(book);
-  successNoty('Книга добавлена')
+  successNoty('Книга добавлена');
 };
 
 const edit = (book) => {
   bookKeeper.updateItem(book);
-  successNoty('Книга изменена')
+  successNoty('Книга изменена');
 };
 
 const remove = (book) => {
   bookKeeper.deleteItem(book.id);
-  successNoty('Книга удалена')
+  successNoty('Книга удалена');
   refreshAndUpdate();
-
 };
+
+const booksCount = computed(() => bookList.value.length);
+
+const filteredBookList = computed(() =>
+  bookList.value.filter((book) =>
+    Object.entries(book)
+      .filter((e) => e[0] !== 'id')
+      .some((e) =>
+        e[1].toString().toLowerCase().includes(searchString.value.toLowerCase())
+      )
+  )
+);
 </script>
 
 <template>
@@ -73,7 +85,11 @@ const remove = (book) => {
         <svg class="header__logo">
           <use href="./assets/sprites.svg#logo"></use>
         </svg>
-        <MyInput class="header__search" placeholder="Крига">
+        <MyInput
+          class="header__search"
+          placeholder="Поиск"
+          v-model="searchString"
+        >
           <template #prepend-icon>
             <svg>
               <use href="./assets/sprites.svg#magnify"></use>
@@ -97,7 +113,14 @@ const remove = (book) => {
         </MyInput> -->
       </div>
       <div class="header__bottom">
-        <h1 class="header__title">Книги в каталоге <span>3</span></h1>
+        <h1 class="header__title">
+          <template v-if="searchString"
+            >Книги по запросу {{ searchString }}</template
+          >
+          <template v-else
+            >Книги в каталоге <span>{{ booksCount }}</span></template
+          >
+        </h1>
         <MyButton
           class="header__button"
           text="Добавить книгу"
@@ -112,7 +135,7 @@ const remove = (book) => {
     <section class="book-list">
       <div class="container">
         <ul>
-          <li class="book" v-for="book in bookList">
+          <li class="book" v-for="book in filteredBookList">
             <div class="book__main">
               <h2 class="book__title">
                 {{ book.title }}
