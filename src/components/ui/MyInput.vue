@@ -44,7 +44,7 @@ const showError = computed(() => !!errorMessage && state === 'error')
       <slot name="append-icon"></slot>
     </div>
 
-    <div class="input__error note"><span v-if="showError">{{ errorMessage }}</span></div>
+    <div class="input__error note" v-if="errorMessage"><span v-if="showError">{{ errorMessage }}</span></div>
   </label>
 </template>
 
