@@ -93,6 +93,7 @@ const showError = computed(() => !!errorMessage && state === 'error')
       border: none;
       outline: none;
       background-color: inherit;
+      color: var(--color-text);
     }
 
     :slotted(svg) {

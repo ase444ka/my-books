@@ -4,6 +4,37 @@ const successNoty = inject('successNoty');
 const errorNoty = inject('errorNoty');
 import BookDialog from '@/components/BookDialog.vue';
 import bookKeeper from '@/api/book-keeper.js';
+import {NSelect} from 'naive-ui';
+
+import ArrowSort28Regular from '@vicons/fluent/ArrowSort28Regular';
+
+const sortFunctions = {
+  default: (a, b) => a.id - b.id,
+  year: (a, b) => a.year - b.year,
+  author: (a, b) => a.author.localeCompare(b.author),
+  title: (a, b) => a.title.localeCompare(b.title),
+};
+
+const sortParams = [
+  {
+    label: 'По умолчанию',
+    value: 'default',
+  },
+  {
+    label: 'По году выхода',
+    value: 'year',
+  },
+  {
+    label: 'По автору',
+    value: 'author',
+  },
+  {
+    label: 'По названию',
+    value: 'title',
+  },
+];
+
+const sortBy = ref('default');
 
 const bookList = ref(bookKeeper.getList());
 const currentBook = ref(null);
@@ -58,15 +89,17 @@ const remove = (book) => {
 
 const booksCount = computed(() => bookList.value.length);
 
-const filteredBookList = computed(() =>
-  bookList.value.filter((book) =>
+const filteredBookList = computed(() => {
+  const list = bookList.value.filter((book) =>
     Object.entries(book)
       .filter((e) => e[0] !== 'id')
       .some((e) =>
         e[1].toString().toLowerCase().includes(searchString.value.toLowerCase())
       )
-  )
-);
+  );
+  list.sort(sortFunctions[sortBy.value])
+  return list;
+});
 </script>
 
 <template>
@@ -121,6 +154,17 @@ const filteredBookList = computed(() =>
             >Книги в каталоге <span>{{ booksCount }}</span></template
           >
         </h1>
+        <NSelect
+          :options="sortParams"
+          default-value="default"
+          v-model:value="sortBy"
+          class="header__select"
+          size="large"
+        >
+          <template #arrow>
+            <ArrowSort28Regular />
+          </template>
+        </NSelect>
         <MyButton
           class="header__button"
           text="Добавить книгу"
@@ -185,6 +229,7 @@ const filteredBookList = computed(() =>
 
   &__bottom {
     display: flex;
+    align-items: center;
   }
 
   &__logo {
@@ -220,6 +265,24 @@ const filteredBookList = computed(() =>
     span {
       color: var(--color-paragraph);
       padding-left: 4px;
+    }
+  }
+  &__select {
+    flex-grow: 0;
+    max-width: 190px;
+
+    :deep(.n-base-selection-label) {
+      height: 49px;
+      border-radius: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      @media screen and (max-width: 1024px) {
+        height: 40px;
+      }
+    }
+    * {
+      box-shadow: none !important;
+      border: none !important;
     }
   }
   &__button {

@@ -52,8 +52,8 @@ p {
 p,
 input,
 button *,
-.toast {
-  font-family: Inter;
+.toast, .n-base-selection-label {
+   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -98,4 +98,19 @@ button *,
     padding: 0 20px;
   }
 }
+
+// .n-virtual-list {
+
+//   background-color: var(--color-background);
+//   * {
+//     color: var(--color-text);
+//     background: var(--color-background);
+
+//   }
+//   .n-base-select-option--selected {
+//     color: var(--color-background);
+//     background: var(--color-text);
+//   }
+// }
+
 
