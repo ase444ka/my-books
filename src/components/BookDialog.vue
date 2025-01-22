@@ -315,7 +315,6 @@ const openedClass = computed(() => isDeleting.value ? 'modal__additional_opened'
   }
   &__alert {
     padding: 15px 10px;
-    background: var(--color-border);
     border-radius: 4px;
     &-message {
       color: var(--color-danger);
@@ -324,8 +323,7 @@ const openedClass = computed(() => isDeleting.value ? 'modal__additional_opened'
       display: flex;
       justify-content: space-between;
       .button {
-        background-color: var(--color-border);
-
+        background-color: var(--color-background);
         &:first-child {
           border: 1px solid var(--color-danger);
           color: var(--color-danger);
