@@ -1,28 +1,38 @@
 # my-books
 
-This template should help get you started developing with Vue 3 in Vite.
+одностраничное приложение (SPA) для работы со списком книг на Vue.js
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[Посмотреть можно здесь](https://ase444ka.github.io/my-books/)
 
-## Customize configuration
+<details>
+<summary>Представленные фичи</summary>
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+|     |                        |
+| --: | ---------------------- |
+|   o | добавление книг        |
+|   o | изменение книг         |
+|   o | сортировка             |
+|   o | фильтрация             |
+|   o | темная тема            |
+|     |                        |
 
-## Project Setup
+</details>
+
+
+### Установка зависимостей
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Запуск в dev-режиме
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Сборка в production
 
 ```sh
 npm run build
