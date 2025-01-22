@@ -120,6 +120,8 @@ const trySaving = () => {
   emit('save', currentBook.value)
 }
 
+const openedClass = computed(() => isDeleting.value ? 'modal__additional_opened' : '')
+
 
 
 </script>
@@ -175,7 +177,8 @@ const trySaving = () => {
         <MyCheckbox v-model="isAgree" :isError="!isAgree && attemptedToSubmit" tabindex="5" lol="pop">
           Я согласен с условиями <a href="#">политики конфиденциальности</a>
         </MyCheckbox>
-        <Transition>
+        <div class="modal__additional" :class="openedClass">
+          <Transition>
           <div class="modal__alert" v-if="isDeleting">
             <div class="modal__alert-message">Точно удалить?</div>
             <div class="modal__alert-actions">
@@ -188,6 +191,8 @@ const trySaving = () => {
             </div>
           </div>
         </Transition>
+        </div>
+        
 
         <div class="modal__actions" v-if="book">
           <MyButton type="button" @click="startDeleting">
@@ -210,7 +215,7 @@ const trySaving = () => {
 <style lang="scss" scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.05s ease, transform 0.4s ease;
+  transition: scale 0.6s ease;
 }
 
 .v-enter-from,
@@ -294,13 +299,22 @@ const trySaving = () => {
     padding-top: 11px;
     display: flex;
     justify-content: flex-end;
+    gap: 15px;
     @media screen and (max-width: 480px) {
       .button {
         flex-grow: 1;
       }
     }
   }
+  &__additional {
+    height: 1px;
+    transition: height 0.2s ease;
+    &_opened {
+      height: 100px;
+    }
+  }
   &__alert {
+    padding: 15px 10px;
     background: var(--color-border);
     border-radius: 4px;
     &-message {
