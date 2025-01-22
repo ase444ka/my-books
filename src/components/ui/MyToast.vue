@@ -47,8 +47,9 @@ const stateClass = computed(() =>
 <style lang="scss" scoped>
 .toast {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  width: 250px;
+  bottom: 30px;
+  left: calc(50% - 95px);
   padding: 11px 11px 11px 16px;
   gap: 14px;
   border-radius: 8px;
@@ -62,6 +63,8 @@ const stateClass = computed(() =>
     }
   }
   @media screen and (max-width: 1024px) {
+  width: 200px;
+
     padding: 10px 8px 4px 12px;
     gap: 5px;
     grid-template-columns: auto fit-content(250px) auto;
